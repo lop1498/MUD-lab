@@ -1,7 +1,6 @@
 import nltk
 
 
-
 #Tokenizer function. You can add here different preprocesses.
 def preprocess(sentence, labels):
     '''

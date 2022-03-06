@@ -1,4 +1,5 @@
 from sklearn.naive_bayes import MultinomialNB
+from sklearn import svm
 from utils import toNumpyArray
 
 
@@ -21,7 +22,7 @@ def applyNaiveBayes(X_train, y_train, X_test):
     return y_predict
 
 
-def applyNaiveBayes(X_train, y_train, X_test):
+def applySVM(X_train, y_train, X_test):
     '''
     Task: Given some features train a Naive Bayes classifier
           and return its predictions over a test set
@@ -33,7 +34,7 @@ def applyNaiveBayes(X_train, y_train, X_test):
     trainArray = toNumpyArray(X_train)
     testArray = toNumpyArray(X_test)
 
-    clf = MultinomialNB()
+    clf = svm.SVC()
     clf.fit(trainArray, y_train)
     y_predict = clf.predict(testArray)
     return y_predict

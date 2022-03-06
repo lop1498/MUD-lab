@@ -10,8 +10,7 @@ import numpy as np
 import pandas as pd
 
 
-
-def compute_features(X_train, 
+def compute_features(X_train,
                      X_test, 
                      analyzer='char', 
                      max_features=None):
@@ -38,9 +37,9 @@ def compute_features(X_train,
   X_unigram_train_raw = unigramVectorizer.fit_transform(X_train)
   X_unigram_test_raw = unigramVectorizer.transform(X_test)
   unigramFeatures = unigramVectorizer.get_feature_names()
+  print(unigramFeatures)
   return unigramFeatures, X_unigram_train_raw, X_unigram_test_raw
     
-
 
 def compute_coverage(features, split, analyzer='char'):
   '''

@@ -1,5 +1,6 @@
 import nltk
 import string
+import pandas as pd
 
 #Tokenizer function. You can add here different preprocesses.
 def preprocess(sentence, labels):
@@ -18,18 +19,25 @@ def preprocess(sentence, labels):
     final_sentences = []
     final_labels = []
 
-    for i in range(len(sentence)):
-        s = sentence[i].lower()
+    for index,sent in sentence.items():
+        s = sent.lower()
+
         sentence_p = "".join([char for char in s if char not in string.punctuation])
-        words = nltk.word_tokenize(sentence_p)
+        #words = nltk.wordpunct_tokenize(sentence_p)
 
-        porter = nltk.PorterStemmer()
-        stemmed = [porter.stem(word) for word in words]
+        #porter = nltk.PorterStemmer()
+        #stemmed = [porter.stem(word) for word in words]
 
-        final_sentences.append(stemmed)
-        final_labels.append([labels[i] for x in range(len(sentence[i]))])
+        #final_sentences.append(stemmed)
+        #final_labels.append([labels[index] for x in range(len(sent))])
+        final_sentences.append(sentence_p)
+        final_labels.append(labels[index])
 
-    return sentence,labels
+    final_sentences = [word for x in final_sentences for word in x]
+    final_labels = [word for x in final_labels for word in x]
+
+    return pd.Series(final_sentences),pd.Series(final_labels)
+
 
 
 

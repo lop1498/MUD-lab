@@ -33,7 +33,6 @@ def compute_features(X_train,
   unigramVectorizer = CountVectorizer(analyzer=analyzer,
                                       max_features=max_features,
                                       ngram_range=(1,1))
-  
   X_unigram_train_raw = unigramVectorizer.fit_transform(X_train)
   X_unigram_test_raw = unigramVectorizer.transform(X_test)
   unigramFeatures = unigramVectorizer.get_feature_names()

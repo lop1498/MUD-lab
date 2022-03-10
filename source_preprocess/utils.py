@@ -148,6 +148,11 @@ def plotPCA(x_train, x_test,y_test, langs):
             Plot PCA results by language
             
     '''
+    colors = ['red','green','blue','yellow','purple','brown','black','orange','teal','pink','grey','yellowgreen', 'violet', 'goldenrod','lightsteelblue', 'rosybrown', 'navy', 'lightcyan', 'deepskyblue','beige','darkcyan','thistle']
+    
+    zip_iterator = zip(langs, colors)
+    dictio = dict(zip_iterator)
+        
     pca = PCA(n_components=2)
     pca.fit(toNumpyArray(x_train))
     pca_test = pca.transform(toNumpyArray(x_test))
@@ -156,9 +161,6 @@ def plotPCA(x_train, x_test,y_test, langs):
     for lang in langs:
         pca_x = np.asarray([i[0] for i in pca_test])[y_test_list == lang]
         pca_y = np.asarray([i[1] for i in pca_test])[y_test_list == lang]
-        plt.scatter(pca_x,pca_y, label=lang)
+        plt.scatter(pca_x,pca_y, label=lang, c=dictio[lang])
     plt.legend(loc="upper left")
     plt.show()
-
-
-
